@@ -1,12 +1,25 @@
-import { Container } from "@mui/material";
+import { Container, Divider } from "@mui/material";
 import { useState } from "react";
+import Code from "./components/Code";
 import Form from "./components/Form";
 
 const App = () => {
   const [state, setState] = useState([
     {
+      type: "email",
+      value: "123@gmail.com",
+    },
+    {
+      type: "phone",
+      value: "+79650987365",
+    },
+    {
       type: "",
       value: "",
+    },
+    {
+      type: "link",
+      value: "advance-club.ru",
     },
   ]);
 
@@ -48,8 +61,13 @@ const App = () => {
       />
     );
   });
-  console.log(state);
-  return <Container maxWidth="md">{items}</Container>;
+  return (
+    <Container maxWidth="md">
+      {items}
+      <Divider />
+      <Code state={state} />
+    </Container>
+  );
 };
 
 export default App;
