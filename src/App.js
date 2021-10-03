@@ -1,34 +1,34 @@
-import { Container, Divider } from "@mui/material";
+import { Container } from "@mui/material";
 import { useState } from "react";
-import Code from "./components/Code";
-import Form from "./components/Form";
+import Code from "./components/Code/Code";
+import Form from "./components/Form/Form";
+
+const initialState = [
+  {
+    type: "email",
+    value: "123@gmail.com",
+  },
+  {
+    type: "phone",
+    value: "+79650987365",
+  },
+  {
+    type: "",
+    value: "",
+  },
+  {
+    type: "link",
+    value: "advance-club.ru",
+  },
+];
 
 const App = () => {
-  const [state, setState] = useState([
-    {
-      type: "email",
-      value: "123@gmail.com",
-    },
-    {
-      type: "phone",
-      value: "+79650987365",
-    },
-    {
-      type: "",
-      value: "",
-    },
-    {
-      type: "link",
-      value: "advance-club.ru",
-    },
-  ]);
+  const [state, setState] = useState(initialState);
 
   const addItem = (index) => {
-    setState([
-      ...state.slice(0, index + 1),
-      { type: "", value: "" },
-      ...state.slice(index + 1),
-    ]);
+    let newState = [...state];
+    newState.splice(index + 1, 0, { type: "", value: "" });
+    setState(newState);
   };
 
   const removeItem = (index) => {
@@ -64,7 +64,6 @@ const App = () => {
   return (
     <Container maxWidth="md">
       {items}
-      <Divider />
       <Code state={state} />
     </Container>
   );

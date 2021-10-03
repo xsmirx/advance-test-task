@@ -48,7 +48,7 @@ const Code = ({ state }) => {
         methods
       </Typography>
 
-      <Box sx={{ display: "flex", gap: "1rem", m: "1rem 0" }}>
+      <Box sx={{ display: "flex", gap: "1rem", margin: "1rem 0" }}>
         <StyledBtn variant="contained" onClick={handlerGetBtn}>
           getFormValues()
         </StyledBtn>
@@ -59,9 +59,10 @@ const Code = ({ state }) => {
 
       {showGet && (
         <StyledCode elevation="5">
-          <pre>{JSON.stringify(getFormValues(state), null, 4)}</pre>
+          <pre>{JSON.stringify(getFormValues(state), null, 2)}</pre>
         </StyledCode>
       )}
+
       {showConvert && (
         <StyledCode elevation="5">
           <pre>

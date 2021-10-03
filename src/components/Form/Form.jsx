@@ -37,9 +37,10 @@ const Form = ({
           display: "flex",
           justifyContent: "space-between",
           gap: "1rem",
+          flexWrap: "wrap",
         }}
       >
-        <FormControl sx={{minWidth: "100px"}}>
+        <FormControl sx={{ flex: "1 1 100px" }}>
           <InputLabel id="type">Type</InputLabel>
           <Select
             id="type"
@@ -54,7 +55,7 @@ const Form = ({
             <MenuItem value="link">Link</MenuItem>
           </Select>
         </FormControl>
-        <FormControl fullWidth>
+        <FormControl sx={{ flex: "1 1 250px" }}>
           <TextField
             id="value"
             label="Value"
@@ -65,17 +66,19 @@ const Form = ({
         </FormControl>
       </Box>
 
-      {type && value && (
-        <Button variant="contained" onClick={addItem}>
-          <AddCircleIcon />
-        </Button>
-      )}
+      <Box sx={{ flex: "1 0 144px", display: "flex", gap: "1rem" }}>
+        {type && value && (
+          <Button variant="contained" onClick={addItem}>
+            <AddCircleIcon />
+          </Button>
+        )}
 
-      {enableRemoveBtn && (
-        <Button variant="outlined" color="error" onClick={removeItem}>
-          <RemoveCircleIcon />
-        </Button>
-      )}
+        {enableRemoveBtn && (
+          <Button variant="outlined" color="error" onClick={removeItem}>
+            <RemoveCircleIcon />
+          </Button>
+        )}
+      </Box>
     </Box>
   );
 };
