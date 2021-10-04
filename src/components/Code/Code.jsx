@@ -31,14 +31,12 @@ const Code = ({ state }) => {
   };
 
   const convertArrayToObject = (obj) => {
-    let array = [];
-    for (let i = 0; i < obj.type.length; i++) {
-      array.push({
-        type: obj.type[i],
-        value: obj.value[i],
-      });
-    }
-    return array;
+    return obj.type.map((item, index) => {
+      return {
+        type: item,
+        value: obj.value[index],
+      };
+    });
   };
 
   return (
