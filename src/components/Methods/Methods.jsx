@@ -9,7 +9,7 @@ const StyledCode = styled(Card)({
   padding: "1rem",
 });
 
-const Code = ({ state }) => {
+const Methods = ({ state }) => {
   const [showGet, setShowGet] = useState(false);
   const [showConvert, setShowConvert] = useState(false);
 
@@ -23,20 +23,44 @@ const Code = ({ state }) => {
   };
 
   const getFormValues = (state) => {
-    let arr = state.filter((item) => item.type && item.value);
-    return {
-      type: arr.map((item) => item.type),
-      value: arr.map((item) => item.value),
-    };
+    //check for empty field on form
+    let arr = state.filter((item) => {
+      for (let key in item) {
+        if (!item[key]) {
+          return false;
+        }
+      }
+      return true;
+    });
+
+    let namesOfFields = Object.keys(arr[0]);
+    let result = {};
+    for (let i = 0; i < namesOfFields.length; i++) {
+      result[namesOfFields[i]] = [];
+      for (let j = 0; j < arr.length; j++) {
+        result[namesOfFields[i]].push(arr[j][namesOfFields[i]]);
+      }
+    }
+
+    return result;
   };
 
   const convertArrayToObject = (obj) => {
-    return obj.type.map((item, index) => {
-      return {
-        type: item,
-        value: obj.value[index],
-      };
-    });
+    let result = [];
+
+    let namesOfFields = Object.keys(obj);
+
+    let numberOfFields = namesOfFields.length;
+    let numberOfForms = obj[namesOfFields[0]].length;
+
+    for (let i = 0; i < numberOfForms; i++) {
+      result.push({});
+      for (let j = 0; j < numberOfFields; j++) {
+        result[i][namesOfFields[j]] = obj[namesOfFields[j]][i];
+      }
+    }
+
+    return result;
   };
 
   return (
@@ -76,4 +100,4 @@ const Code = ({ state }) => {
   );
 };
 
-export default Code;
+export default Methods;

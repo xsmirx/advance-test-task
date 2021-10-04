@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
 import { useState } from "react";
-import Code from "./components/Code/Code";
+import Methods from "./components/Methods/Methods";
 import Form from "./components/Form/Form";
 
 const initialState = [
@@ -64,7 +64,7 @@ const App = () => {
   return (
     <Container maxWidth="md">
       {items}
-      <Code state={state} />
+      <Methods state={state} />
     </Container>
   );
 };
